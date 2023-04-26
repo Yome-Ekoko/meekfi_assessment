@@ -15,4 +15,12 @@ public class GlobalExceptionHandler {
         errorMessage.setDebugMessage(ex.getDebugMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(BlogApiException.class)
+    protected ResponseEntity<Object> blogExceptions(BlogApiException ex) {
+        ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setStatus(HttpStatus.NOT_FOUND);
+        errorMessage.setMessage(ex.getMessage());
+        errorMessage.setDebugMessage(ex.getDebugMessage());
+        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+    }
 }

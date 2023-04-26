@@ -1,5 +1,6 @@
 package com.yomeDev.blogapp.controllers;
 
+import com.yomeDev.blogapp.payloads.ApiResponseDto;
 import com.yomeDev.blogapp.payloads.LoginDto;
 import com.yomeDev.blogapp.payloads.RegisterDto;
 import com.yomeDev.blogapp.services.AuthService;
@@ -24,8 +25,8 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
     @PostMapping(value={"/register","/signup"})
-    public  ResponseEntity<String> registerUser(@RequestBody RegisterDto registerDto){
-        String response= authService.register(registerDto);
+    public  ResponseEntity<ApiResponseDto<String>> registerUser(@RequestBody RegisterDto registerDto){
+        ApiResponseDto<String> response= authService.register(registerDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }
